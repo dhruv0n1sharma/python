@@ -1,0 +1,11 @@
+# Taking student details from the user
+name = input("Enter Student Name: ")
+roll_no = input("Enter Roll Number: ")
+course = input("Enter Course Name: ")
+
+# Displaying the entered details
+print("\n Student Details ")
+print("Name:", name)
+print("Roll Number:", roll_no)
+print("Course:", course)
+
