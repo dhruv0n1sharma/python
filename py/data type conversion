@@ -1,5 +1,0 @@
-x = input("Enter anything: ")
-y = type(x)
-
-print("Your input:", x)
-print("Data type is:", y)
