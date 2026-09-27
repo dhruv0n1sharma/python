@@ -270,3 +270,183 @@ def reverse_string(text):
 mystr = "Python"
 print(f"Original: {mystr}")
 print(f"Reversed: {reverse_string(mystr)}\n")
+
+
+# =====================================================================
+#  ATM Simulator
+
+print("--- 21. ATM SIMULATION ---")
+balance = 1000.0
+
+while True:
+    print("\n1. Check Balance")
+    print("2. Deposit")
+    print("3. Withdraw")
+    print("4. Exit")
+    
+    choice = input("Select an option (1-4): ")
+    
+    if choice == "1":
+        print("Your balance is: Rs.", balance)
+        
+    elif choice == "2":
+        amount = float(input("Enter deposit amount: "))
+        if amount <= 0:
+            print("Invalid amount! Cannot deposit negative or zero.")
+        else:
+            balance = balance + amount
+            print("Deposited successfully. Current balance:", balance)
+            
+    elif choice == "3":
+        amount = float(input("Enter withdrawal amount: "))
+        if amount <= 0:
+            print("Invalid amount!")
+        elif amount > balance:
+            print("Insufficient balance! You don't have enough money.")
+        else:
+            balance = balance - amount
+            print("Withdrawal successful. Remaining balance:", balance)
+            
+    elif choice == "4":
+        print("Thank you for using our ATM!")
+        break
+    else:
+        print("Invalid choice. Try again.")
+
+
+
+
+# =====================================================================
+#  Password Attempts
+print("\n--- 22. PASSWORD ATTEMPTS ---")
+saved_password = "mysecretpass"
+attempts = 3
+
+while attempts > 0:
+    entered_pass = input("Enter password: ")
+    
+    if entered_pass == saved_password:
+        print("Login successful! Welcome.")
+        break
+    else:
+        attempts = attempts - 1
+        if attempts > 0:
+            print("Wrong password. Attempts left:", attempts)
+        else:
+            print("Account locked! Too many failed attempts.")
+
+
+
+# =====================================================================
+#  Number Guessing Game
+print("\n--- 23. NUMBER GUESSING GAME ---")
+import random
+target_number = random.randint(1, 100)
+total_guesses = 0
+
+print("Guess a number between 1 and 100")
+
+while True:
+    user_guess = int(input("Your guess: "))
+    total_guesses = total_guesses + 1
+    
+    if user_guess < target_number:
+        print("Too Low! Try a bigger number.")
+    elif user_guess > target_number:
+        print("Too High! Try a smaller number.")
+    else:
+        print("Correct! You guessed it in", total_guesses, "attempts.")
+        break
+
+# =====================================================================
+# Q24: Student Marks Analyzer
+print("\n--- 24. STUDENT MARKS ANALYZER ---")
+total_students = int(input("How many students? "))
+
+highest_pct = -1.0
+lowest_pct = 101.0
+sum_of_all_percentages = 0.0
+
+for i in range(total_students):
+    print("\nEnter details for student", i + 1)
+    name = input("Name: ")
+    
+    total_marks = 0.0
+    for j in range(5):
+        sub_marks = float(input("Enter marks for subject " + str(j+1) + ": "))
+        total_marks = total_marks + sub_marks
+        
+    pct = (total_marks / 500.0) * 100
+    sum_of_all_percentages = sum_of_all_percentages + pct
+    
+
+    if pct > highest_pct:
+        highest_pct = pct
+    if pct < lowest_pct:
+        lowest_pct = pct
+        
+
+    if pct >= 90:
+        grade = "A"
+    elif pct >= 80:
+        grade = "B"
+    elif pct >= 70:
+        grade = "C"
+    elif pct >= 50:
+        grade = "D"
+    else:
+        grade = "F"
+        
+    # Pass or Fail
+    if pct >= 40:
+        status = "Pass"
+    else:
+        status = "Fail"
+        
+    print(name, "- Total:", total_marks, "| Percentage:", pct, "% | Grade:", grade, "| Result:", status)
+
+if total_students > 0:
+    class_average = sum_of_all_percentages / total_students
+    print("\n--- Class Summary ---")
+    print("Highest Percentage in class:", highest_pct, "%")
+    print("Lowest Percentage in class:", lowest_pct, "%")
+    print("Overall Class Average:", class_average, "%")
+
+
+
+
+# =====================================================================
+#  Shopping Bill
+print("\n--- 25. SHOPPING BILL ---")
+total_amount = 0.0
+
+while True:
+    price = float(input("Enter item price: "))
+    qty = int(input("Enter item quantity: "))
+    
+    total_amount = total_amount + (price * qty)
+    
+    more = input("Add more items? (y/n): ")
+    if more == "n" or more == "N":
+        break
+
+
+discount = 0
+if total_amount >= 10000:
+    discount = 20
+elif total_amount >= 5000:
+    discount = 10
+elif total_amount >= 2000:
+    discount = 5
+else:
+    discount = 0
+
+discount_value = (total_amount * discount) / 100
+final_bill = total_amount - discount_value
+
+print("\n--- Bill Details ---")
+print("Total Price: Rs.", total_amount)
+print("Discount Applied:", discount, "%")
+print("Discount Amount Saved: Rs.", discount_value)
+print("Final Payable Bill: Rs.", final_bill)
+
